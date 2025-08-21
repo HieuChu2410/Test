@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beo sound A1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+  </head>
+  <body
+    class="font-urbanist box-border overflow-x-hidden font-[Urbanist] text-[#171717]"
+  >
+    <div id="hero"></div>
+
+    <div id="feature"></div>
+
+    <div id="list"></div>
+
+    <div id="time"></div>
+
+    <div id="detail"></div>
+
+    <div id="product"></div>
+
+    <div id="sub"></div>
+
+    <div id="article"></div>
+
+    <div id="review"></div>
+
+    <div id="brand"></div>
+
+    <div id="question"></div>
+
+    <div id="service"></div>
+
+    <div id="contact"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+      async function loadComponent(id, file) {
+        try {
+          const res = await fetch(`./components/${file}`);
+          const html = await res.text();
+          document.getElementById(id).innerHTML = html;
+
+          const jsFile = file.replace(".html", ".js");
+          const jsPath = `./components/js/${jsFile}`;
+
+          const jsRes = await fetch(jsPath);
+          if (jsRes.ok) {
+            const script = document.createElement("script");
+            script.src = jsPath;
+
+            script.onload = () => {
+              const fnName = "init" + file.replace(".html", "");
+              if (typeof window[fnName] === "function") {
+                window[fnName]();
+              }
+            };
+
+            document.body.appendChild(script);
+          }
+
+          return true;
+        } catch (e) {
+          console.error(`Error loading ${file}:`, e);
+          return false;
+        }
+      }
+
+      loadComponent("hero", "Hero.html");
+      loadComponent("feature", "Feature.html");
+      loadComponent("list", "List.html");
+      loadComponent("time", "Time.html");
+      loadComponent("detail", "Detail.html");
+      loadComponent("product", "Product.html");
+      loadComponent("sub", "Sub.html");
+      loadComponent("article", "Article.html");
+      loadComponent("review", "Review.html");
+      loadComponent("brand", "Brand.html");
+      loadComponent("question", "Question.html");
+      loadComponent("service", "Service.html");
+      loadComponent("contact", "Contact.html");
+    </script>
+  </body>
+</html>
