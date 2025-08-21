@@ -2,7 +2,6 @@ function initDetail() {
   const root = document.getElementById("detail");
   if (!root) return;
 
-
   const variantBigImgs = [
     "./assets/detail_black.webp",
     "./assets/detail_white.webp",
@@ -13,7 +12,6 @@ function initDetail() {
   ];
   const variantNames = ["Black", "White", "Gold", "Blue", "Pink", "Green"];
 
- 
   const desktopWrap = root.querySelector(".hidden.md\\:flex");
   const bigImg = root.querySelector(".hidden.md\\:flex div.max-w-full img");
   const thumbs = Array.from(
@@ -37,12 +35,9 @@ function initDetail() {
     });
   }
 
-  
   function setMainImage(src) {
     if (bigImg) bigImg.src = src;
-   
   }
-
 
   root.querySelectorAll(".divide-y button").forEach((btn) => {
     const content = btn.nextElementSibling;
@@ -51,7 +46,7 @@ function initDetail() {
 
     content.style.overflow = "hidden";
     content.style.transition = "max-height 0.3s ease";
-    content.classList.add("hidden"); 
+    content.classList.add("hidden");
 
     btn.addEventListener("click", () => {
       const isOpen = content.classList.contains("open");
@@ -163,7 +158,6 @@ function initDetail() {
 
     const text = codeEl.textContent.trim();
     navigator.clipboard.writeText(text).then(() => {
-    
       codeEl.classList.add("hidden");
       copyBtn.classList.add("hidden");
 
